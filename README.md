@@ -21,6 +21,12 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## TODO
+- Add Unit Test
+- Finish Json Processor:
+- Add Integration Tests
+- Add Load Tests
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.

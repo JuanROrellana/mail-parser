@@ -5,6 +5,7 @@ import { HealthModule } from './health/health.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { SentryGlobalFilter } from '@sentry/nestjs/setup';
 import { CatchAllExceptionFilter } from './filters/catch-all-exception.filter';
+import { EmailProcessorModule } from './email-processor/email-processor.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { CatchAllExceptionFilter } from './filters/catch-all-exception.filter';
         },
       ],
     }),
+    EmailProcessorModule,
   ],
   providers: [
     {
