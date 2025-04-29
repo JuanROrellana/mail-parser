@@ -21,22 +21,73 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## TODO
-- Add Unit Test
-- Finish Json Processor:
-- Add Integration Tests
-- Add Load Tests
+## Notes
+For this application did not had enough time to implement some features that I would have like to do in an application, since I took to much time adding some nice to have. 
+Listed bellow:
+
+### TODO
+- Unit Test (I would have been supported with google gemini)
+- Integration Tests (same as unit test)
+- Load Tests (Using K6 and adding it to the pipeline)
+- husky (Implemented on ses-sns app)
+- Improve Docker support. Possible multi env support
+- CI/CD pipelines with AWS Code Build
+- Add logger https://docs.nestjs.com/techniques/logger (But manage to integrate to Sentry)
 
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-This project implements a NestJS application designed to process AWS SES notifications received via SNS.
+This project implements a NestJS application designed to extract and parse structured data from emails. The application provides REST API endpoints that process emails containing JSON or CSV data.
+
+### Usage Example
+
+Extract JSON from an email (URL source)
+```bash
+curl -X POST https://mail-parser.juanramirez.dev/v1/email-processor/json \
+  -H "Content-Type: application/json" \
+  -d '{"source": "https://test-parser-juanramirez.s3.us-east-1.amazonaws.com/email-with-attachment.eml"}'
+
+```
+Process CSV from an email (local file)
+```bash
+curl -X POST https://mail-parser.juanramirez.dev/v1/email-processor/csv \
+  -H "Content-Type: application/json" \
+  -d '{"source": "/path/to/local/email.eml"}'
+```
+
+### Example URLs for JSON Processing
+
+The application supports several scenarios for extracting JSON data from emails:
+
+#### Case A: JSON as a file attachment
+Process an email with a JSON file attachment:
+```
+https://test-parser-juanramirez.s3.us-east-1.amazonaws.com/email-with-attachment.eml
+```
+
+#### Case B: JSON inside the body of the email as a link
+Process an email containing a direct link to a JSON resource:
+```
+https://test-parser-juanramirez.s3.us-east-1.amazonaws.com/email-with-link-to-json.eml
+```
+
+#### Case C: JSON inside the body of the email as a recursive link
+Process an email with a link to a webpage that contains another link to the actual JSON:
+```
+https://test-parser-juanramirez.s3.us-east-1.amazonaws.com/email-with-link-to-site-with-json.eml
+```
+
+### Case D: Email with not Json
+```
+https://test-parser-juanramirez.s3.us-east-1.amazonaws.com/no-json-email.eml
+```
 
 Key features include:
 - **Swagger Documentation:** Integrates Swagger for easy API exploration and testing.
 - **Security:** Uses `helmet` for basic security hardening.
 - **Health Check:** Provides a `/health` endpoint for monitoring application status.
+- **Request Timeout:** Implements a `TimeoutInterceptor` (see `src/common/interceptors/timeout.interceptor.ts`) on the email processor endpoint to prevent potential infinite loops during recursive URL fetching for JSON data.
 
 ## Origin
 
@@ -89,34 +140,3 @@ $ docker compose up -d
 ```
 
 Access the application at `http://localhost:3000/api`.
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).

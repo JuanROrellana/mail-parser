@@ -23,6 +23,7 @@ export class EmailContentService {
         return simpleParser(fileContent);
       }
     } catch (error) {
+      // TODO: Add logger https://docs.nestjs.com/techniques/logger
       throw new InternalServerErrorException(
         `Failed to retrieve email from source: ${source} Error: ${error}`,
       );

@@ -1,0 +1,104 @@
+Delivered-To: juan.jose.ra.or@gmail.com
+Received: by 2002:a17:907:3cd5:b0:ac7:ce15:eaeb with SMTP id hk21csp33917ejc;
+        Mon, 28 Apr 2025 22:49:17 -0700 (PDT)
+X-Received: by 2002:a2e:ad85:0:b0:30c:d32:aba8 with SMTP id 38308e7fff4ca-319dd6a15d5mr36469921fa.30.1745905757367;
+        Mon, 28 Apr 2025 22:49:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1745905757; cv=none;
+        d=google.com; s=arc-20240605;
+        b=f+AxOsu4REKhhPIGtgcODzi9OTF/DNnnkip0kwwOmt/1AoESWAVhubg04D3VkZ2mIn
+         uwOBHD+AGsBTEt1Ds18cVOCQd1wmtoB+z1aH1H/4OAZzB/KoPEAoh84YCeqWn1Ahja8l
+         MdSKhdA4HETYYivZo3dq9gxo1rB/kvJRwpY3hLsfQy275JrpjWRi5a0NdTCBlEQerXTO
+         B5RWYxjJxFbmcd5gJS7WM/92CIcBCFHX9uPSuZ7fqm50CQLmZkLwIp4DmpX76iLveWr1
+         p1iQXztmrYxmwe6g0JHKVAmiLszn/ZcNPA3Tynzo/hcaH4m/Kc9eIhrXKpYuDEuTY/Ij
+         Mrlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=wW7Zfm/z17E0WkRfRp/OIGM8urlYDU8CrXNgPkkI85Q=;
+        fh=TM+JkffjpQ4EBYY04fzEPy88NLtviWs++QdGdmWeois=;
+        b=QiivWXbYWumZ8tzVMHheCSGf4S3A1YKcqaekI0LnKxQBHlVnEolbrkKiDk+lynaYzV
+         d0+fw3xj+zrRaJ2L/Ah+ceGYqC2Rbp4Ez1wBirvi6UA71EOrvGpJH0Vw1AuBeT75RRbw
+         aBalfNo12kQ75m+uU+glLb3Sr3saoiArS976dE5JhDjp/vafcixaMAZ3M8E7JilAsfcG
+         A4fHNC01T9H4I+X/fBDr+AyUZrYsUKCfwRXyR1Pfh993JeBG9F7mzKkYydFf5HOsnudG
+         xu6APoSL54kRWyFmGYrAtQ3oI3/1FH1H57/5UzTxkFxLA/8EODJS+Y2gjWPmUfsbsfgl
+         7BJA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=OefwJUAT;
+       spf=pass (google.com: domain of ramirez.orellana.juanjose@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=ramirez.orellana.juanjose@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <ramirez.orellana.juanjose@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 38308e7fff4ca-317cf7669d6sor22012531fa.3.2025.04.28.22.49.17
+        for <juan.jose.ra.or@gmail.com>
+        (Google Transport Security);
+        Mon, 28 Apr 2025 22:49:17 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ramirez.orellana.juanjose@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=OefwJUAT;
+       spf=pass (google.com: domain of ramirez.orellana.juanjose@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=ramirez.orellana.juanjose@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745905757; x=1746510557; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=wW7Zfm/z17E0WkRfRp/OIGM8urlYDU8CrXNgPkkI85Q=;
+        b=OefwJUATt0/HIvllMl7gpOYC+5bRwNoFfIgrHuuls/GMxQcObpe6xR2eohfn58/jFi
+         K5VJFBhZgmY/7l7tAuCV6w2s2JJTyeUlkZipxii3VJcIT8DdH7X8dQViMeLu6DGOe80K
+         pBUPq/gcDU6A5dgigon1YmjzDdipxel8QgBPc9ZzrSR5vPrSmD6BEPgmKOpOLWf0PdLS
+         q/gQk6xHvWdVovsEor0s5APp+DuSdkQTF0ezytTvKvrkMKl8orizk3kV9BObXBsZEez5
+         qRSo0ZrQSQubVpO+XQfkO2W5vPLMbLUhDhIkp7Jb9IQqh+lp4Z45qs8/UIcyexBU3sX3
+         gZ/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745905757; x=1746510557;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wW7Zfm/z17E0WkRfRp/OIGM8urlYDU8CrXNgPkkI85Q=;
+        b=fcXYQsWTYUd9oRfpHeMRF6e8jMzUtMzwXh6xwcw3XDoj9FtfH4A5BXSDRqk7HJHSyE
+         DzT07xZ8lzEtRUlt7sjEjOjd+6WHWvoJx01PcmTX/QwwUJMNaiizHWMS64q8qcNoxmXh
+         umIZVbDkH8aTz8YcNcpSFFLU2bpdocB+OGcFBykWuyoySlDJRXVaY31zafFIny/XTaWW
+         kb2UuW8ciiRhxgkUrnedss67ZqwVGT95XcbKtWVkJ8tAkvRO8NJ1NbwWIFv+yeC0qz8V
+         ChrDYr2p5QHXPPPlmUgWTDkHESybzlhOrzHSScEX8n4OxSIfS1JPUcOahQy9U7+eNzxX
+         714Q==
+X-Gm-Message-State: AOJu0Yx4zM5341ncus2F6JXSyePZ971FlG/ZrmLyxUzVMBTYh7Sprsop
+	0kHUt14a4Zp1NIRvTd0rhF/q6E41IkAnbOostwePt18xb+hhOyBlPQ87eK6C3SZ5t1i0ZVdotmD
+	3HfV3N+JKxRrBEDInXp5WK31mgmlyhbD9
+X-Gm-Gg: ASbGncsOyOihIaTY3qNxxDlDt8K8T0fBqTf1+CCxD1eS8BBtMobRtR6w7k5QjytBOoR
+	fdgANGfYwuUAAq0hU5ppjGrw4XgFJjuPz+anUeUvpWV+C7n9xNXEmk9fDPOrNDBTWTqr++EpCbr
+	WMX396KJMJu97CqtI8UBTPrky9H3U4nIxfWHY=
+X-Google-Smtp-Source: AGHT+IFtL/y3r9FqfiAk3DkLTAJKEsvIKecUMltFoKpb+YK+FgCqvamBESzYDt2/zEohgekrlfalKsGyz7TdmfbJXfc=
+X-Received: by 2002:a05:651c:30cc:b0:30b:ce0a:3e63 with SMTP id
+ 38308e7fff4ca-319dba4f9cemr35023011fa.7.1745905756540; Mon, 28 Apr 2025
+ 22:49:16 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?Q?Juan_Jose_Ram=C3=ADrez_Orellana?= <ramirez.orellana.juanjose@gmail.com>
+Date: Mon, 28 Apr 2025 23:49:04 -0600
+X-Gm-Features: ATxdqUHRy3DuPtkwxbKS4dTFJmFdR4p-2EhhhGrI1esR0rTXS8Ll5Gu63yoHO20
+Message-ID: <CAP=sjnDwC1J4u0b726db7CBkx7ehPc-1ANuZVCLqkgidVD7dfw@mail.gmail.com>
+Subject: No Json Email
+To: Juan Ramirez <juan.jose.ra.or@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000006e15d50633e45cce"
+
+--0000000000006e15d50633e45cce
+Content-Type: text/plain; charset="UTF-8"
+
+This a no json email.
+
+Juan Jose Ramirez Orellana
+Software Engineer
+
+--0000000000006e15d50633e45cce
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>This a no json email.</div><div><br></div><div><div d=
+ir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><di=
+v dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"=
+ltr"><div><div dir=3D"ltr"><div><div><span style=3D"color:rgb(0,0,0);font-f=
+amily:helvetica,arial;font-size:15px;margin-left:5px">Juan Jose Ramirez Ore=
+llana</span></div><div><span style=3D"color:rgb(0,0,0);font-family:helvetic=
+a,arial;font-size:12px">Software Engineer</span></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div>
+
+--0000000000006e15d50633e45cce--

@@ -1,8 +1,8 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, UseInterceptors } from '@nestjs/common';
 import { EmailProcessorService } from './email-processor.service';
 import { ProcessResourceDto } from './dto/process-source.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
-
+import { TimeoutInterceptor } from '../common/interceptors/timeout.interceptor';
 @ApiTags('email-processor')
 @Controller('email-processor')
 export class EmailProcessorController {
@@ -11,17 +11,18 @@ export class EmailProcessorController {
   @ApiOperation({ summary: 'Parse JSON from email' })
   @ApiResponse({
     status: 200,
-    description: 'The JSON content extracted from the email'
+    description: 'The JSON content extracted from the email',
   })
   @ApiResponse({
     status: 400,
-    description: 'Bad request, invalid source format'
+    description: 'Bad request, invalid source format',
   })
   @ApiResponse({
     status: 500,
-    description: 'Internal server error while processing the email'
+    description: 'Internal server error while processing the email',
   })
   @Post('json')
+  @UseInterceptors(new TimeoutInterceptor(3000))
   parseJson(@Body() body: ProcessResourceDto) {
     return this.emailProcessorService.parseJson(body.source);
   }
@@ -29,15 +30,15 @@ export class EmailProcessorController {
   @ApiOperation({ summary: 'Parse CSV from email' })
   @ApiResponse({
     status: 200,
-    description: 'The CSV content extracted from the email'
+    description: 'The CSV content extracted from the email',
   })
   @ApiResponse({
     status: 400,
-    description: 'Bad request, invalid source format'
+    description: 'Bad request, invalid source format',
   })
   @ApiResponse({
     status: 500,
-    description: 'Internal server error while processing the email'
+    description: 'Internal server error while processing the email',
   })
   @Post('csv')
   parseCsv(@Body() body: ProcessResourceDto) {
